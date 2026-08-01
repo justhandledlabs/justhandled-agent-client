@@ -1,22 +1,40 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 import { getCatalog, previewUtility, selectGuardedRequirement } from "../src/client.js";
-import { BASE_MAINNET, BASE_USDC, GATEWAY_ORIGIN, JUSTHANDLED_RECEIVER, PRICE_BASE_UNITS } from "../src/config.js";
+import { AGENT_RUN_EVIDENCE_PACK_BASE_UNITS, BASE_MAINNET, BASE_USDC, GATEWAY_ORIGIN, JUSTHANDLED_RECEIVER, PRICE_BASE_UNITS } from "../src/config.js";
 
 test("catalog client validates count, endpoint, and price", async () => {
   const fakeFetch = async () => new Response(JSON.stringify({
     schemaVersion: "1.0",
-    count: 1,
-    utilities: [{ id: "example", endpoint: `${GATEWAY_ORIGIN}/api/run/example`, price: "$0.05" }],
+    count: 2,
+    utilities: [
+      { id: "example", endpoint: `${GATEWAY_ORIGIN}/api/run/example`, price: "$0.05" },
+      { id: "agent-run-evidence-pack", endpoint: `${GATEWAY_ORIGIN}/api/run/agent-run-evidence-pack`, price: "$0.25" },
+    ],
   }), { status: 200 });
   const catalog = await getCatalog(fakeFetch as typeof fetch);
-  assert.equal(catalog.count, 1);
+  assert.equal(catalog.count, 2);
   const evilFetch = async () => new Response(JSON.stringify({
     schemaVersion: "1.0",
     count: 1,
     utilities: [{ id: "example", endpoint: "https://evil.example/run", price: "$0.05" }],
   }), { status: 200 });
   await assert.rejects(getCatalog(evilFetch as typeof fetch), /untrusted/);
+});
+
+test("payment guard accepts the separately pinned evidence-pack price", () => {
+  const resourceUrl = `${GATEWAY_ORIGIN}/api/run/agent-run-evidence-pack`;
+  const requirement = selectGuardedRequirement({
+    x402Version: 2,
+    resource: { url: resourceUrl, description: "pack", mimeType: "application/json" },
+    accepts: [{ scheme: "exact", network: BASE_MAINNET, asset: BASE_USDC, amount: AGENT_RUN_EVIDENCE_PACK_BASE_UNITS, payTo: JUSTHANDLED_RECEIVER, maxTimeoutSeconds: 60, extra: {} }],
+  }, resourceUrl);
+  assert.equal(requirement.amount, "250000");
+  assert.throws(() => selectGuardedRequirement({
+    x402Version: 2,
+    resource: { url: resourceUrl, description: "pack", mimeType: "application/json" },
+    accepts: [{ ...requirement, amount: PRICE_BASE_UNITS }],
+  }, resourceUrl), /\$0\.25/);
 });
 
 test("client refuses malformed attribution labels before sending", async () => {

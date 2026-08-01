@@ -3,10 +3,9 @@ import { Server } from "@modelcontextprotocol/sdk/server/index.js";
 import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
 import { CallToolRequestSchema, ListToolsRequestSchema } from "@modelcontextprotocol/sdk/types.js";
 import { getCatalog, runPaidUtility } from "./client.js";
-import { PRICE_USDC } from "./config.js";
 
 const server = new Server(
-  { name: "justhandled-agent-gateway", version: "0.1.0" },
+  { name: "justhandled-agent-gateway", version: "0.2.0" },
   { capabilities: { tools: {} } },
 );
 
@@ -21,7 +20,7 @@ server.setRequestHandler(ListToolsRequestSchema, async () => {
       },
       ...catalog.utilities.map((utility) => ({
         name: `justhandled_${utility.id.replace(/-/g, "_")}`,
-        description: `${utility.summary} Costs ${PRICE_USDC} USDC on Base mainnet.`,
+        description: `${utility.summary} Costs ${utility.price} USDC on Base mainnet.`,
         inputSchema: utility.inputSchema,
       })),
     ],
@@ -38,7 +37,7 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
   const key = process.env.JH_EVM_PRIVATE_KEY as `0x${string}` | undefined;
   if (!key) {
     return {
-      content: [{ type: "text", text: `Paid execution requires JH_EVM_PRIVATE_KEY. This tool will spend exactly ${PRICE_USDC} USDC only after validating the pinned Base network, USDC contract, price, and receiver.` }],
+      content: [{ type: "text", text: `Paid execution requires JH_EVM_PRIVATE_KEY. This tool will spend exactly ${utility.price} USDC only after validating the pinned Base network, USDC contract, price, and receiver.` }],
       isError: true,
     };
   }

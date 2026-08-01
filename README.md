@@ -1,14 +1,15 @@
 # JustHandled Agent Client
 
-A guarded CLI, JavaScript client, and local MCP server for the [JustHandled Agent Utility Gateway](https://justhandled-agent-gateway.netlify.app). The package exposes sixteen deterministic preflights, including six agent evidence and evaluation checks. Each paid call costs exactly $0.05 USDC on Base mainnet and returns a versioned evidence receipt.
+A guarded CLI, JavaScript client, and local MCP server for the [JustHandled Agent Utility Gateway](https://justhandled-agent-gateway.netlify.app). The package exposes seventeen deterministic preflights and evidence packs. Sixteen individual checks cost $0.05 USDC; the consolidated six-check Agent Run Evidence Pack costs $0.25. Every paid call returns a versioned evidence receipt.
 
-The client fails closed before signing. It accepts only the pinned JustHandled gateway, Base mainnet, the canonical Base USDC contract, a 50,000-base-unit price, and the published merchant receiver. Customer inputs are not persisted by the gateway.
+The client fails closed before signing. It accepts only the pinned JustHandled gateway, Base mainnet, canonical Base USDC, the exact per-product price, and the published merchant receiver. Customer inputs are not persisted by the gateway.
 
 ## Inspect without a wallet
 
 ```bash
 npx --package @justhandledlabs/agent-client justhandled-agent catalog
 npx --package @justhandledlabs/agent-client justhandled-agent preview filename-portability-preflight --json '{"paths":["CON.txt"]}'
+npx --package @justhandledlabs/agent-client justhandled-agent preview agent-run-evidence-pack --file agent-run-evidence-pack.sample.json
 ```
 
 Preview performs an unpaid request and validates the returned x402 terms. It does not sign or spend.
@@ -52,6 +53,7 @@ The MCP server exposes a free catalog tool plus one paid tool per gateway utilit
 ## Security model
 
 - Price, chain, asset, receiver, and gateway origin are pinned in code.
+- The Agent Run Evidence Pack's 250,000-base-unit price is pinned separately from 50,000-base-unit individual checks.
 - Every execution starts with an unpaid 402 preview.
 - A mismatched term aborts before signing.
 - The package never prints the private key.

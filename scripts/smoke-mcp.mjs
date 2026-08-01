@@ -27,10 +27,10 @@ child.stdout.on("data", (chunk) => {
       send({ jsonrpc: "2.0", id: 2, method: "tools/list", params: {} });
     } else if (message.id === 2) {
       const tools = message.result?.tools;
-      if (!Array.isArray(tools) || tools.length !== 17) {
+      if (!Array.isArray(tools) || tools.length !== 18) {
         clearTimeout(timeout);
         child.kill();
-        throw new Error(`expected 17 MCP tools, received ${Array.isArray(tools) ? tools.length : "invalid response"}`);
+        throw new Error(`expected 18 MCP tools, received ${Array.isArray(tools) ? tools.length : "invalid response"}`);
       }
       console.log(`MCP smoke test passed: ${tools.length} tools discovered; no wallet key supplied and no payment attempted.`);
       clearTimeout(timeout);
