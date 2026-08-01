@@ -1,0 +1,20 @@
+{
+  "observed_at": "2026-08-01T15:00:00.000Z",
+  "contracts": [{
+    "event": "invoice.paid",
+    "allowed_versions": ["2026-01"],
+    "required_fields": ["invoice.id", "invoice.amount"],
+    "signature_required": true,
+    "idempotency_required": true,
+    "max_age_seconds": 300
+  }],
+  "deliveries": [{
+    "id": "delivery-1",
+    "event": "invoice.paid",
+    "version": "2026-01",
+    "payload": { "invoice": { "id": "inv-1", "amount": 2500 } },
+    "signature_present": true,
+    "idempotency_key": "evt-1",
+    "event_created_at": "2026-08-01T14:58:00.000Z"
+  }]
+}

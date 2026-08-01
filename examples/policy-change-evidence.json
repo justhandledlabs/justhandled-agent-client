@@ -1,0 +1,15 @@
+{
+  "policies": [{
+    "id": "refund-policy",
+    "baseline": {
+      "version": "1.0",
+      "effective_date": "2026-01-01",
+      "clauses": [{ "id": "window", "text": "Refunds are available within 30 days.", "applies_to": ["all customers"], "requirements": ["receipt"] }]
+    },
+    "current": {
+      "version": "1.0",
+      "effective_date": "2026-01-01",
+      "clauses": [{ "id": "window", "text": "Refunds are available within 30 days.", "applies_to": ["all customers"], "requirements": ["receipt"] }]
+    }
+  }]
+}

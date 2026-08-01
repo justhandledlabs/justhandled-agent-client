@@ -1,0 +1,18 @@
+{
+  "contracts": [{
+    "id": "get-account",
+    "expected_status": 200,
+    "expected_content_type": "application/json",
+    "required_fields": ["data.id", "data.status"],
+    "forbidden_fields": ["data.secret"],
+    "field_types": { "data.id": "string", "data.status": "string" },
+    "stable_values": { "data.status": "active" }
+  }],
+  "responses": [{
+    "id": "run-1",
+    "contract_id": "get-account",
+    "status": 200,
+    "content_type": "application/json",
+    "body": { "data": { "id": "acct-1", "status": "active" } }
+  }]
+}
