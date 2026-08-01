@@ -1,0 +1,71 @@
+{
+  "observed_at": "2026-08-04T18:00:00Z",
+  "window": {
+    "started_at": "2026-08-01T00:00:00Z",
+    "ended_at": "2026-08-04T17:59:59Z"
+  },
+  "events": [
+    {
+      "id": "view-1",
+      "type": "impression",
+      "occurred_at": "2026-08-01T12:00:00Z",
+      "source": "directory",
+      "evidence_ref": "analytics:impression:1",
+      "owner_controlled": false,
+      "external_actor": false,
+      "attribution": "none"
+    },
+    {
+      "id": "question-1",
+      "type": "buyer-question",
+      "occurred_at": "2026-08-01T13:00:00Z",
+      "source": "support",
+      "evidence_ref": "ticket:question:1",
+      "owner_controlled": false,
+      "external_actor": true,
+      "attribution": "direct",
+      "actor_token": "actor:7f91c2a8",
+      "product_id": "example-product"
+    },
+    {
+      "id": "settlement-1",
+      "type": "external-settlement",
+      "occurred_at": "2026-08-01T14:00:00Z",
+      "source": "payment-processor",
+      "evidence_ref": "receipt:settlement:1",
+      "owner_controlled": false,
+      "external_actor": true,
+      "attribution": "verified",
+      "actor_token": "actor:7f91c2a8",
+      "product_id": "example-product",
+      "amount": 19,
+      "currency": "USD",
+      "transaction_id": "txn_example_1"
+    },
+    {
+      "id": "value-1",
+      "type": "measured-review-time-reduction",
+      "occurred_at": "2026-08-02T16:00:00Z",
+      "source": "timed-review",
+      "evidence_ref": "measurement:review:1",
+      "owner_controlled": false,
+      "external_actor": true,
+      "attribution": "verified",
+      "measured_value": 12,
+      "measurement_unit": "minutes"
+    },
+    {
+      "id": "return-1",
+      "type": "recurring-use",
+      "occurred_at": "2026-08-03T16:00:00Z",
+      "source": "usage-receipt",
+      "evidence_ref": "receipt:usage:2",
+      "owner_controlled": false,
+      "external_actor": true,
+      "attribution": "verified",
+      "actor_token": "actor:7f91c2a8",
+      "product_id": "example-product",
+      "parent_event_id": "settlement-1"
+    }
+  ]
+}
