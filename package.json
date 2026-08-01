@@ -1,6 +1,6 @@
 {
   "name": "@justhandledlabs/agent-client",
-  "version": "0.7.0",
+  "version": "0.8.0",
   "description": "Guarded CLI and MCP client for JustHandled's x402 utility gateway",
   "type": "module",
   "license": "MIT",
