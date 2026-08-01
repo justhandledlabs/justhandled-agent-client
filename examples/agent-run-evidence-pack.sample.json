@@ -1,0 +1,24 @@
+{
+  "promise_action": {
+    "promises": [{ "id": "p1", "description": "Publish package" }],
+    "actions": [{ "id": "a1", "status": "completed", "promise_ids": ["p1"], "evidence_ids": ["e1"] }],
+    "evidence": [{ "id": "e1", "type": "registry", "uri": "https://registry.example/package" }]
+  },
+  "tool_calls": {
+    "contracts": [{ "tool": "publish", "allowed": true, "max_calls": 1, "required_arguments": ["artifact"], "forbidden_arguments": ["private_key"] }],
+    "calls": [{ "id": "c1", "tool": "publish", "arguments": { "artifact": "package.tgz" }, "outcome": "published" }]
+  },
+  "completion": {
+    "outcomes": [{ "id": "publish", "status": "completed", "evidence": [{ "type": "registry", "uri": "https://registry.example/package" }] }]
+  },
+  "tool_descriptions": {
+    "tools": [{ "name": "publish", "description": "Publish one validated package artifact to the configured registry.", "inputs": ["artifact"], "outputs": ["registry receipt"], "side_effects": ["creates a public package version"], "failure_modes": ["registry rejection"], "cost": { "amount": "0", "currency": "USD" }, "idempotency": "fails if the version already exists" }]
+  },
+  "skill_activation": {
+    "cases": [{ "id": "publish-package", "expected_skills": ["publish"], "observed_skills": ["publish"] }]
+  },
+  "costs": {
+    "budget_usd": 0.1,
+    "calls": [{ "id": "turn-1", "model": "example-model", "input_tokens": 1000, "output_tokens": 250, "input_usd_per_million": 1, "output_usd_per_million": 4, "tool_cost_usd": 0.01 }]
+  }
+}
