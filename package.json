@@ -1,10 +1,10 @@
 {
   "name": "@justhandledlabs/agent-client",
-  "version": "0.2.1",
+  "version": "0.3.0",
   "description": "Guarded CLI and MCP client for JustHandled's x402 utility gateway",
   "type": "module",
   "license": "MIT",
-  "mcpName": "com.justhandledlabs/agent-gateway",
+  "mcpName": "io.github.justhandledlabs/agent-gateway",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/justhandledlabs/justhandled-agent-client.git"
@@ -16,10 +16,14 @@
   "keywords": [
     "ai-agents",
     "mcp",
+    "mcp-server",
     "x402",
     "base",
     "usdc",
-    "preflight"
+    "preflight",
+    "agent-evaluation",
+    "agent-observability",
+    "evidence"
   ],
   "files": [
     "dist",
