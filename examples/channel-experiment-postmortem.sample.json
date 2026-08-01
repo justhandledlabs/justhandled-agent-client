@@ -1,0 +1,9 @@
+{
+  "observed_at": "2026-08-16T00:00:00Z",
+  "experiment": {"id":"directory-proof-v1","channel":"agent-directory","hypothesis":"A concrete evidence packet will produce at least two attributable checkout openings in 14 days.","objective":"qualified-demand","started_at":"2026-08-01T00:00:00Z","ended_at":"2026-08-15T00:00:00Z","declared_before_start":true,"gate":{"metric":"checkout-open","threshold":2,"window_days":14},"variables":{"channel":"agent-directory","offer":"$19 evidence skill","artifact":"proof-led listing","audience":"AI agent builders","timing":"14-day launch window"},"changed_variables":["artifact"],"max_cost_usd":0,"max_effort_hours":5,"cooldown_days":7},
+  "events": [{"id":"open-1","type":"checkout-open","occurred_at":"2026-08-05T12:00:00Z","evidence_ref":"checkout:open:1","external_actor":true,"owner_controlled":false,"attribution":"verified"},{"id":"open-2","type":"checkout-open","occurred_at":"2026-08-09T12:00:00Z","evidence_ref":"checkout:open:2","external_actor":true,"owner_controlled":false,"attribution":"direct"}],
+  "cost_usd": 0,
+  "effort_hours": 3,
+  "attribution_complete": true,
+  "owner_activity_excluded": true
+}

@@ -15,6 +15,8 @@ export const QUARTER_DOLLAR_UTILITIES = new Set([
   "community-rule-credibility-preflight",
   "qualified-demand-ledger",
   "channel-fit-evidence-matrix",
+  "proof-to-channel-evidence-packet",
+  "channel-experiment-postmortem",
 ]);
 
 export function expectedPriceForUtility(utility: string): string {
