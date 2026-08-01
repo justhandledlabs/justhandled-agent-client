@@ -1,5 +1,5 @@
 {
-  "name": "justhandled-agent-client",
+  "name": "@justhandledlabs/agent-client",
   "version": "0.1.0",
   "description": "Guarded CLI and MCP client for JustHandled's x402 utility gateway",
   "type": "module",
@@ -28,6 +28,7 @@
     "server.json"
   ],
   "bin": {
+    "agent-client": "dist/mcp.js",
     "justhandled-agent-client": "dist/mcp.js",
     "justhandled-agent": "dist/cli.js",
     "justhandled-agent-mcp": "dist/mcp.js"
