@@ -1,0 +1,94 @@
+{
+  "observed_at": "2026-08-01T22:30:00Z",
+  "objective": "qualified-demand",
+  "constraints": {
+    "budget_usd": 50,
+    "effort_hours": 12,
+    "max_parallel_tests": 2,
+    "rules_max_age_days": 30
+  },
+  "evidence": [
+    {
+      "id": "rule-agent-directory",
+      "type": "platform-rule",
+      "captured_at": "2026-08-01T20:00:00Z",
+      "source_url": "https://example.com/directory-rules",
+      "observed": true
+    },
+    {
+      "id": "rule-marketplace",
+      "type": "platform-rule",
+      "captured_at": "2026-08-01T20:10:00Z",
+      "source_url": "https://example.com/marketplace-rules",
+      "observed": true
+    },
+    {
+      "id": "proof-live",
+      "type": "product-proof",
+      "captured_at": "2026-08-01T21:00:00Z",
+      "source_url": "https://example.com/product",
+      "observed": true
+    },
+    {
+      "id": "proof-readiness",
+      "type": "distribution-readiness",
+      "captured_at": "2026-08-01T21:10:00Z",
+      "source_url": "https://example.com/readiness-receipt",
+      "observed": true
+    }
+  ],
+  "channels": [
+    {
+      "id": "agent-directory",
+      "kind": "agent-directory",
+      "audience_match": 5,
+      "buyer_intent": 4,
+      "format_match": 5,
+      "saturation": 3,
+      "rule_status": "verified",
+      "rule_evidence_id": "rule-agent-directory",
+      "product_evidence_ids": ["proof-live", "proof-readiness"],
+      "attribution": "verified",
+      "attribution_mechanism": "Unique source token preserved through the unpaid challenge and settlement receipt.",
+      "existing_access": "account",
+      "offer_path_ready": true,
+      "estimated_cost_usd": 0,
+      "estimated_effort_hours": 2,
+      "owner_presence_required": false,
+      "owner_available": true,
+      "outcome_gate": {
+        "metric": "payment-initiation",
+        "threshold": 2,
+        "window_days": 14,
+        "max_cost_usd": 0,
+        "max_effort_hours": 4
+      }
+    },
+    {
+      "id": "marketplace",
+      "kind": "marketplace",
+      "audience_match": 4,
+      "buyer_intent": 5,
+      "format_match": 4,
+      "saturation": 4,
+      "rule_status": "verified",
+      "rule_evidence_id": "rule-marketplace",
+      "product_evidence_ids": ["proof-live"],
+      "attribution": "direct",
+      "attribution_mechanism": "Marketplace listing identifier linked to checkout-opening evidence.",
+      "existing_access": "account",
+      "offer_path_ready": true,
+      "estimated_cost_usd": 0,
+      "estimated_effort_hours": 3,
+      "owner_presence_required": false,
+      "owner_available": true,
+      "outcome_gate": {
+        "metric": "checkout-open",
+        "threshold": 2,
+        "window_days": 14,
+        "max_cost_usd": 0,
+        "max_effort_hours": 5
+      }
+    }
+  ]
+}
