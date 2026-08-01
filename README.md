@@ -1,6 +1,6 @@
 # JustHandled Agent Client
 
-A guarded CLI, JavaScript client, and local MCP server for the [JustHandled Agent Utility Gateway](https://justhandled-agent-gateway.netlify.app). The package exposes twenty deterministic preflights and evidence products. Nineteen individual checks cost $0.05 USDC; the consolidated six-check Agent Run Evidence Pack costs $0.25. Every paid call returns a versioned evidence receipt.
+A guarded CLI, JavaScript client, and local MCP server for the [JustHandled Agent Utility Gateway](https://justhandledlabs.com/agent-gateway/). The package exposes twenty-five deterministic preflights, maintained-data lookups, and evidence products. Twenty-two products cost $0.05 USDC; the Chicago permit change packet, site-discovery change packet, and consolidated six-check Agent Run Evidence Pack cost $0.25. Every paid call returns a versioned evidence receipt.
 
 The client fails closed before signing. It accepts only the pinned JustHandled gateway, Base mainnet, canonical Base USDC, the exact per-product price, and the published merchant receiver. Customer inputs are not persisted by the gateway.
 
@@ -57,7 +57,7 @@ The package declares the official MCP Registry identity `io.github.justhandledla
 ## Security model
 
 - Price, chain, asset, receiver, and gateway origin are pinned in code.
-- The Agent Run Evidence Pack's 250,000-base-unit price is pinned separately from 50,000-base-unit individual checks.
+- The three $0.25 products' 250,000-base-unit price is pinned separately from 50,000-base-unit checks.
 - Every execution starts with an unpaid 402 preview.
 - A mismatched term aborts before signing.
 - The package never prints the private key.

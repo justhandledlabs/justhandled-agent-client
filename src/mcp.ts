@@ -5,7 +5,7 @@ import { CallToolRequestSchema, ListToolsRequestSchema } from "@modelcontextprot
 import { getCatalog, runPaidUtility } from "./client.js";
 
 const server = new Server(
-  { name: "justhandled-agent-gateway", version: "0.3.0" },
+  { name: "justhandled-agent-gateway", version: "0.4.0" },
   { capabilities: { tools: {} } },
 );
 

@@ -1,6 +1,6 @@
 {
   "name": "@justhandledlabs/agent-client",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "description": "Guarded CLI and MCP client for JustHandled's x402 utility gateway",
   "type": "module",
   "license": "MIT",
@@ -9,7 +9,7 @@
     "type": "git",
     "url": "git+https://github.com/justhandledlabs/justhandled-agent-client.git"
   },
-  "homepage": "https://justhandled-agent-gateway.netlify.app",
+  "homepage": "https://justhandledlabs.com/agent-gateway/",
   "bugs": {
     "url": "https://github.com/justhandledlabs/justhandled-agent-client/issues"
   },
