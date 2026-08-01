@@ -1,6 +1,6 @@
 # JustHandled Agent Client
 
-A guarded CLI, JavaScript client, and local MCP server for the [JustHandled Agent Utility Gateway](https://justhandledlabs.com/agent-gateway/). The package exposes twenty-five deterministic preflights, maintained-data lookups, and evidence products. Twenty-two products cost $0.05 USDC; the Chicago permit change packet, site-discovery change packet, and consolidated six-check Agent Run Evidence Pack cost $0.25. Every paid call returns a versioned evidence receipt.
+A guarded CLI, JavaScript client, and local MCP server for the [JustHandled Agent Utility Gateway](https://justhandledlabs.com/agent-gateway/). The package exposes twenty-six deterministic preflights, maintained-data lookups, and evidence products. Twenty-two products cost $0.05 USDC; four evidence-heavy products cost $0.25, including the Agent Distribution Readiness Pack. Every paid call returns a versioned evidence receipt.
 
 The client fails closed before signing. It accepts only the pinned JustHandled gateway, Base mainnet, canonical Base USDC, the exact per-product price, and the published merchant receiver. Customer inputs are not persisted by the gateway.
 
@@ -10,6 +10,7 @@ The client fails closed before signing. It accepts only the pinned JustHandled g
 npx --package @justhandledlabs/agent-client justhandled-agent catalog
 npx --package @justhandledlabs/agent-client justhandled-agent preview filename-portability-preflight --json '{"paths":["CON.txt"]}'
 npx --package @justhandledlabs/agent-client justhandled-agent preview agent-run-evidence-pack --file agent-run-evidence-pack.sample.json
+npx --package @justhandledlabs/agent-client justhandled-agent preview agent-distribution-readiness-pack --file agent-distribution-readiness-pack.sample.json
 ```
 
 Preview performs an unpaid request and validates the returned x402 terms. It does not sign or spend.
@@ -57,7 +58,7 @@ The package declares the official MCP Registry identity `io.github.justhandledla
 ## Security model
 
 - Price, chain, asset, receiver, and gateway origin are pinned in code.
-- The three $0.25 products' 250,000-base-unit price is pinned separately from 50,000-base-unit checks.
+- The four $0.25 products' 250,000-base-unit price is pinned separately from 50,000-base-unit checks.
 - Every execution starts with an unpaid 402 preview.
 - A mismatched term aborts before signing.
 - The package never prints the private key.
