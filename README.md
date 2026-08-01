@@ -7,8 +7,8 @@ The client fails closed before signing. It accepts only the pinned JustHandled g
 ## Inspect without a wallet
 
 ```bash
-npx --package justhandled-agent-client justhandled-agent catalog
-npx --package justhandled-agent-client justhandled-agent preview filename-portability-preflight --json '{"paths":["CON.txt"]}'
+npx --package @justhandledlabs/agent-client justhandled-agent catalog
+npx --package @justhandledlabs/agent-client justhandled-agent preview filename-portability-preflight --json '{"paths":["CON.txt"]}'
 ```
 
 Preview performs an unpaid request and validates the returned x402 terms. It does not sign or spend.
@@ -19,14 +19,14 @@ Use a dedicated low-balance Base wallet. Never provide a primary wallet key.
 
 ```bash
 export JH_EVM_PRIVATE_KEY=0x...
-npx --package justhandled-agent-client justhandled-agent call filename-portability-preflight --json '{"paths":["CON.txt"]}'
+npx --package @justhandledlabs/agent-client justhandled-agent call filename-portability-preflight --json '{"paths":["CON.txt"]}'
 ```
 
 PowerShell:
 
 ```powershell
 $env:JH_EVM_PRIVATE_KEY = "0x..."
-npx.cmd --package justhandled-agent-client justhandled-agent call filename-portability-preflight --json '{"paths":["CON.txt"]}'
+npx.cmd --package @justhandledlabs/agent-client justhandled-agent call filename-portability-preflight --json '{"paths":["CON.txt"]}'
 ```
 
 ## MCP configuration
@@ -36,7 +36,7 @@ npx.cmd --package justhandled-agent-client justhandled-agent call filename-porta
   "mcpServers": {
     "justhandled": {
       "command": "npx",
-      "args": ["-y", "justhandled-agent-client"],
+      "args": ["-y", "@justhandledlabs/agent-client"],
       "env": {
         "JH_EVM_PRIVATE_KEY": "0xDEDICATED_LOW_BALANCE_WALLET_KEY"
       }
