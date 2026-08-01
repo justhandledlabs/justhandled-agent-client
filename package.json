@@ -1,0 +1,68 @@
+{
+  "name": "justhandled-agent-client",
+  "version": "0.1.0",
+  "description": "Guarded CLI and MCP client for JustHandled's x402 utility gateway",
+  "type": "module",
+  "license": "MIT",
+  "mcpName": "com.justhandledlabs/agent-gateway",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/justhandledlabs/justhandled-agent-client.git"
+  },
+  "homepage": "https://justhandled-agent-gateway.netlify.app",
+  "bugs": {
+    "url": "https://github.com/justhandledlabs/justhandled-agent-client/issues"
+  },
+  "keywords": [
+    "ai-agents",
+    "mcp",
+    "x402",
+    "base",
+    "usdc",
+    "preflight"
+  ],
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE",
+    "server.json"
+  ],
+  "bin": {
+    "justhandled-agent-client": "dist/mcp.js",
+    "justhandled-agent": "dist/cli.js",
+    "justhandled-agent-mcp": "dist/mcp.js"
+  },
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "scripts": {
+    "build": "node scripts/clean.mjs && tsc -p tsconfig.json",
+    "test": "node --import tsx --test tests/*.test.ts",
+    "smoke:mcp": "npm run build && node scripts/smoke-mcp.mjs",
+    "check": "npm run build && npm test",
+    "prepack": "npm run check",
+    "prepublishOnly": "node scripts/assert-publish-ready.mjs"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "latest",
+    "@x402/core": "latest",
+    "@x402/evm": "latest",
+    "@x402/fetch": "^2.20.0",
+    "viem": "^2.55.10"
+  },
+  "devDependencies": {
+    "@types/node": "latest",
+    "tsx": "latest",
+    "typescript": "latest"
+  },
+  "engines": {
+    "node": ">=22"
+  },
+  "publishConfig": {
+    "access": "public",
+    "provenance": true
+  }
+}

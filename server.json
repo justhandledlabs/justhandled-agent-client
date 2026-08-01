@@ -1,0 +1,30 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "com.justhandledlabs/agent-gateway",
+  "title": "JustHandled Agent Utility Gateway",
+  "description": "Ten deterministic preflights with guarded $0.05 USDC x402 execution.",
+  "version": "0.1.0",
+  "repository": {
+    "url": "https://github.com/justhandledlabs/justhandled-agent-client",
+    "source": "github"
+  },
+  "packages": [
+    {
+      "registryType": "npm",
+      "identifier": "justhandled-agent-client",
+      "version": "0.1.0",
+      "transport": {
+        "type": "stdio"
+      },
+      "environmentVariables": [
+        {
+          "name": "JH_EVM_PRIVATE_KEY",
+          "description": "Private key for a dedicated Base wallet funded with USDC. Never use a primary wallet.",
+          "isRequired": true,
+          "isSecret": true,
+          "format": "string"
+        }
+      ]
+    }
+  ]
+}
