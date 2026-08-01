@@ -13,6 +13,7 @@ export const QUARTER_DOLLAR_UTILITIES = new Set([
   "site-discovery-change-packet",
   "agent-distribution-readiness-pack",
   "community-rule-credibility-preflight",
+  "qualified-demand-ledger",
 ]);
 
 export function expectedPriceForUtility(utility: string): string {
