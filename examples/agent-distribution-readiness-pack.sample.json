@@ -1,0 +1,23 @@
+{
+  "observed_at": "2026-08-01T21:00:00Z",
+  "product": {
+    "name": "Example Agent",
+    "version": "1.2.0",
+    "kind": "mcp-server",
+    "canonical_url": "https://example.com/agent/",
+    "price_usd": 0.25
+  },
+  "surfaces": [
+    { "id": "home", "type": "homepage", "url": "https://example.com/agent/", "captured_at": "2026-08-01T20:55:00Z", "http_status": 200, "name": "Example Agent", "version": "1.2.0", "canonical_url": "https://example.com/agent/", "price_usd": 0.25, "evidence_ref": "sha256:homepage" },
+    { "id": "docs", "type": "documentation", "url": "https://example.com/agent/docs", "captured_at": "2026-08-01T20:55:00Z", "http_status": 200, "evidence_ref": "sha256:docs" },
+    { "id": "pricing", "type": "pricing", "url": "https://example.com/agent/pricing", "captured_at": "2026-08-01T20:55:00Z", "http_status": 200, "price_usd": 0.25, "evidence_ref": "sha256:pricing" },
+    { "id": "support", "type": "support", "url": "https://example.com/agent/support", "captured_at": "2026-08-01T20:55:00Z", "http_status": 200, "evidence_ref": "sha256:support" },
+    { "id": "security", "type": "security", "url": "https://example.com/agent/security", "captured_at": "2026-08-01T20:55:00Z", "http_status": 200, "evidence_ref": "sha256:security" },
+    { "id": "registry", "type": "agent-registry", "url": "https://registry.modelcontextprotocol.io/example", "captured_at": "2026-08-01T20:55:00Z", "http_status": 200, "name": "Example Agent", "version": "1.2.0", "evidence_ref": "registry:example@1.2.0" },
+    { "id": "transport", "type": "transport", "url": "https://api.example.com/mcp", "captured_at": "2026-08-01T20:55:00Z", "http_status": 200, "capabilities": ["tools/list", "resources/list"], "evidence_ref": "sha256:mcp-probe" }
+  ],
+  "claims": [
+    { "id": "live", "text": "The hosted MCP transport is live.", "evidence_surface_ids": ["transport"] }
+  ],
+  "target_channels": ["mcp-registry", "smithery"]
+}

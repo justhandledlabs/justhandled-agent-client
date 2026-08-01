@@ -11,6 +11,7 @@ export const QUARTER_DOLLAR_UTILITIES = new Set([
   AGENT_RUN_EVIDENCE_PACK,
   "chicago-demolition-permit-change-packet",
   "site-discovery-change-packet",
+  "agent-distribution-readiness-pack",
 ]);
 
 export function expectedPriceForUtility(utility: string): string {
