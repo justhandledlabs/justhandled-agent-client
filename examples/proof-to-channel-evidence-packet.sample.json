@@ -1,0 +1,10 @@
+{
+  "observed_at": "2026-08-01T23:30:00Z",
+  "max_evidence_age_days": 30,
+  "product": {"id":"example-agent","name":"Example Agent","version":"1.0.0","canonical_url":"https://example.com/agent","offer_url":"https://example.com/agent/try","price_usd":19},
+  "channel": {"name":"Example Agent Directory","kind":"agent-directory","rules_captured_at":"2026-08-01T22:00:00Z","rules_source_url":"https://example.com/directory/rules","rule_status":"verified","link_policy":"allowed","pricing_disclosure_required":true,"demo_required":true,"screenshots_required":1,"identity_fields":[]},
+  "claims": [{"id":"deterministic","text":"Produces a deterministic evidence report from normalized input.","evidence_ids":["docs","demo"],"required_for_submission":true,"personal_experience":false}],
+  "evidence": [{"id":"docs","type":"documentation","source_url":"https://example.com/agent/docs","captured_at":"2026-08-01T22:30:00Z","observed":true,"supports_claim_ids":["deterministic"]},{"id":"demo","type":"demo","source_url":"https://example.com/agent/demo","captured_at":"2026-08-01T22:35:00Z","observed":true,"supports_claim_ids":["deterministic"]},{"id":"shot","type":"screenshot","source_url":"https://example.com/agent/screenshot","captured_at":"2026-08-01T22:40:00Z","observed":true,"supports_claim_ids":[]}],
+  "artifacts": {"demo_url":"https://example.com/agent/demo","install_path":"Run npx example-agent with the supplied JSON file.","screenshots":[{"id":"hero","evidence_id":"shot"}],"pricing_disclosure":"$19 one-time download.","link_target":"https://example.com/agent/try?source=directory","attribution_mechanism":"Preserve the source token through checkout-open and settlement receipts."},
+  "human_authored_fields": {}
+}
