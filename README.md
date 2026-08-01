@@ -1,6 +1,6 @@
 # JustHandled Agent Client
 
-A guarded CLI, JavaScript client, and local MCP server for the [JustHandled Agent Utility Gateway](https://justhandled-agent-gateway.netlify.app). The package exposes ten deterministic preflights. Each paid call costs exactly $0.05 USDC on Base mainnet and returns a versioned evidence receipt.
+A guarded CLI, JavaScript client, and local MCP server for the [JustHandled Agent Utility Gateway](https://justhandled-agent-gateway.netlify.app). The package exposes sixteen deterministic preflights, including six agent evidence and evaluation checks. Each paid call costs exactly $0.05 USDC on Base mainnet and returns a versioned evidence receipt.
 
 The client fails closed before signing. It accepts only the pinned JustHandled gateway, Base mainnet, the canonical Base USDC contract, a 50,000-base-unit price, and the published merchant receiver. Customer inputs are not persisted by the gateway.
 
@@ -12,6 +12,8 @@ npx --package @justhandledlabs/agent-client justhandled-agent preview filename-p
 ```
 
 Preview performs an unpaid request and validates the returned x402 terms. It does not sign or spend.
+
+Machine-readable products, exact payment terms, and free deterministic fixtures are available from the gateway's [product catalog](https://justhandled-agent-gateway.netlify.app/api/product-catalog), [OpenAPI document](https://justhandled-agent-gateway.netlify.app/openapi.json), and [sandbox index](https://justhandled-agent-gateway.netlify.app/sandbox/index.json).
 
 ## Execute one paid utility
 
