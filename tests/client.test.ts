@@ -38,7 +38,7 @@ test("payment guard accepts the separately pinned evidence-pack price", () => {
 });
 
 test("payment guard pins maintained-data and evidence-heavy products at $0.25", () => {
-  for (const utility of ["chicago-demolition-permit-change-packet", "site-discovery-change-packet", "agent-distribution-readiness-pack"]) {
+  for (const utility of ["chicago-demolition-permit-change-packet", "site-discovery-change-packet", "agent-distribution-readiness-pack", "community-rule-credibility-preflight"]) {
     const resourceUrl = `${GATEWAY_ORIGIN}/api/run/${utility}`;
     const requirement = selectGuardedRequirement({
       x402Version: 2,

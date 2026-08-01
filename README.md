@@ -1,6 +1,6 @@
 # JustHandled Agent Client
 
-A guarded CLI, JavaScript client, and local MCP server for the [JustHandled Agent Utility Gateway](https://justhandledlabs.com/agent-gateway/). The package exposes twenty-six deterministic preflights, maintained-data lookups, and evidence products. Twenty-two products cost $0.05 USDC; four evidence-heavy products cost $0.25, including the Agent Distribution Readiness Pack. Every paid call returns a versioned evidence receipt.
+A guarded CLI, JavaScript client, and local MCP server for the [JustHandled Agent Utility Gateway](https://justhandledlabs.com/agent-gateway/). The package exposes twenty-seven deterministic preflights, maintained-data lookups, and evidence products. Twenty-two products cost $0.05 USDC; five evidence-heavy products cost $0.25, including Agent Distribution Readiness and Community Rule & Credibility Preflight. Every paid call returns a versioned evidence receipt.
 
 The client fails closed before signing. It accepts only the pinned JustHandled gateway, Base mainnet, canonical Base USDC, the exact per-product price, and the published merchant receiver. Customer inputs are not persisted by the gateway.
 
@@ -11,6 +11,7 @@ npx --package @justhandledlabs/agent-client justhandled-agent catalog
 npx --package @justhandledlabs/agent-client justhandled-agent preview filename-portability-preflight --json '{"paths":["CON.txt"]}'
 npx --package @justhandledlabs/agent-client justhandled-agent preview agent-run-evidence-pack --file agent-run-evidence-pack.sample.json
 npx --package @justhandledlabs/agent-client justhandled-agent preview agent-distribution-readiness-pack --file agent-distribution-readiness-pack.sample.json
+npx --package @justhandledlabs/agent-client justhandled-agent preview community-rule-credibility-preflight --file community-rule-credibility-preflight.sample.json
 ```
 
 Preview performs an unpaid request and validates the returned x402 terms. It does not sign or spend.
@@ -58,7 +59,7 @@ The package declares the official MCP Registry identity `io.github.justhandledla
 ## Security model
 
 - Price, chain, asset, receiver, and gateway origin are pinned in code.
-- The four $0.25 products' 250,000-base-unit price is pinned separately from 50,000-base-unit checks.
+- The five $0.25 products' 250,000-base-unit price is pinned separately from 50,000-base-unit checks.
 - Every execution starts with an unpaid 402 preview.
 - A mismatched term aborts before signing.
 - The package never prints the private key.
