@@ -7,13 +7,18 @@ export const PRICE_USDC = "$0.05";
 export const AGENT_RUN_EVIDENCE_PACK = "agent-run-evidence-pack";
 export const AGENT_RUN_EVIDENCE_PACK_BASE_UNITS = "250000";
 export const AGENT_RUN_EVIDENCE_PACK_PRICE_USDC = "$0.25";
+export const QUARTER_DOLLAR_UTILITIES = new Set([
+  AGENT_RUN_EVIDENCE_PACK,
+  "chicago-demolition-permit-change-packet",
+  "site-discovery-change-packet",
+]);
 
 export function expectedPriceForUtility(utility: string): string {
-  return utility === AGENT_RUN_EVIDENCE_PACK ? AGENT_RUN_EVIDENCE_PACK_PRICE_USDC : PRICE_USDC;
+  return QUARTER_DOLLAR_UTILITIES.has(utility) ? AGENT_RUN_EVIDENCE_PACK_PRICE_USDC : PRICE_USDC;
 }
 
 export function expectedBaseUnitsForUtility(utility: string): string {
-  return utility === AGENT_RUN_EVIDENCE_PACK ? AGENT_RUN_EVIDENCE_PACK_BASE_UNITS : PRICE_BASE_UNITS;
+  return QUARTER_DOLLAR_UTILITIES.has(utility) ? AGENT_RUN_EVIDENCE_PACK_BASE_UNITS : PRICE_BASE_UNITS;
 }
 
 export interface UtilityCatalogItem {

@@ -37,6 +37,18 @@ test("payment guard accepts the separately pinned evidence-pack price", () => {
   }, resourceUrl), /\$0\.25/);
 });
 
+test("payment guard pins maintained-data and evidence-heavy products at $0.25", () => {
+  for (const utility of ["chicago-demolition-permit-change-packet", "site-discovery-change-packet"]) {
+    const resourceUrl = `${GATEWAY_ORIGIN}/api/run/${utility}`;
+    const requirement = selectGuardedRequirement({
+      x402Version: 2,
+      resource: { url: resourceUrl, description: utility, mimeType: "application/json" },
+      accepts: [{ scheme: "exact", network: BASE_MAINNET, asset: BASE_USDC, amount: AGENT_RUN_EVIDENCE_PACK_BASE_UNITS, payTo: JUSTHANDLED_RECEIVER, maxTimeoutSeconds: 60, extra: {} }],
+    }, resourceUrl);
+    assert.equal(requirement.amount, "250000");
+  }
+});
+
 test("client refuses malformed attribution labels before sending", async () => {
   const shouldNotRun = async () => { throw new Error("fetch should not run"); };
   await assert.rejects(previewUtility("example", {}, shouldNotRun as typeof fetch, "Bad Source"), /source must be/);
