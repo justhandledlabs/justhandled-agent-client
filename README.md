@@ -52,6 +52,8 @@ npx.cmd --package @justhandledlabs/agent-client justhandled-agent call filename-
 
 The MCP server exposes a free catalog tool plus one paid tool per gateway utility. Missing wallet configuration produces an error instead of a payment attempt.
 
+The package declares the official MCP Registry identity `io.github.justhandledlabs/agent-gateway`. Registry identity is discovery metadata only: installing or listing the server does not spend funds, and paid execution still requires a dedicated wallet plus the client's exact-term checks.
+
 ## Security model
 
 - Price, chain, asset, receiver, and gateway origin are pinned in code.

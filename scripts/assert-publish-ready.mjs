@@ -8,6 +8,6 @@ if (serialized.includes("REPLACE_ME")) {
 if (pkg.name !== "@justhandledlabs/agent-client") {
   throw new Error("publication blocked: package must publish under the @justhandledlabs scope");
 }
-if (pkg.mcpName !== "com.justhandledlabs/agent-gateway") {
+if (pkg.mcpName !== "io.github.justhandledlabs/agent-gateway") {
   throw new Error("publication blocked: unexpected MCP registry name");
 }
