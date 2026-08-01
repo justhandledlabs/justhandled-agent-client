@@ -1,0 +1,32 @@
+{
+  "observed_at": "2026-08-01T22:00:00Z",
+  "channel": "show-hn",
+  "action": {
+    "type": "launch",
+    "promotes_own_product": true,
+    "generated_or_ai_edited_text": false,
+    "asks_for_votes": false,
+    "asks_for_comments": false,
+    "paid_hunter_or_traffic": false,
+    "shortened_or_redirected_link": false,
+    "claims_supported": true,
+    "repeated_or_unsolicited": false,
+    "redirect_intended_to_bypass_block": false,
+    "live_product": true,
+    "tryable_without_signup": true,
+    "founder_available": true,
+    "non_trivial_product": true,
+    "landing_page_only": false,
+    "pricing_transparent": true,
+    "link_url": "https://example.com/product",
+    "unique_value_evidence": "Public runnable product and release evidence."
+  },
+  "account": {
+    "identity_type": "person",
+    "primary_use_is_promotion": false,
+    "age_days": 365,
+    "community_karma": 100,
+    "community_contributions": 50,
+    "promotional_contributions": 2
+  }
+}
