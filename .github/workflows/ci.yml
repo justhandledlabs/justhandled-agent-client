@@ -23,3 +23,42 @@ jobs:
       - run: npm ci
       - run: npm run check
       - run: npm pack --dry-run --ignore-scripts
+
+  container:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+
+      - name: Build hardened runtime image
+        run: docker build --tag justhandled-agent-client:ci .
+
+      - name: Verify runtime dependencies and attack-surface removals
+        shell: bash
+        run: |
+          docker run --rm --entrypoint sh justhandled-agent-client:ci -c \
+            'test ! -e /usr/local/lib/node_modules/npm &&
+             test ! -e /usr/local/bin/npm &&
+             test ! -e /usr/local/bin/npx &&
+             test ! -e /app/node_modules/@typescript/typescript-linux-x64'
+          docker run --rm --entrypoint node justhandled-agent-client:ci \
+            --input-type=module -e \
+            "await Promise.all([import('@modelcontextprotocol/sdk/server/index.js'), import('@x402/fetch'), import('viem')])"
+
+      - name: Install pinned Trivy scanner
+        shell: bash
+        run: |
+          curl --fail --location --silent --show-error \
+            https://github.com/aquasecurity/trivy/releases/download/v0.72.0/trivy_0.72.0_Linux-64bit.tar.gz \
+            --output trivy.tar.gz
+          echo "bbb64b9695866ce4a7a8f5c9592002c5961cab378577fa3f8a040df362b9b2ea  trivy.tar.gz" | sha256sum --check
+          tar -xzf trivy.tar.gz trivy
+          chmod +x trivy
+
+      - name: Block fixable high and critical vulnerabilities
+        run: >-
+          ./trivy image
+          --exit-code 1
+          --ignore-unfixed
+          --scanners vuln
+          --severity HIGH,CRITICAL
+          justhandled-agent-client:ci
