@@ -1,8 +1,8 @@
 # JustHandled Agent Client
 
-A guarded CLI, JavaScript client, and local MCP server for the [JustHandled Agent Utility Gateway](https://justhandledlabs.com/agent-gateway/). The package exposes thirty-one deterministic preflights, maintained-data lookups, and evidence products. Twenty-two products cost $0.05 USDC; nine evidence-heavy products cost $0.25, including Channel-Fit Evidence Matrix, Proof-to-Channel Evidence Packet, and Channel Experiment Postmortem. Every paid call returns a versioned evidence receipt.
+A guarded CLI, JavaScript client, and local MCP server for the [JustHandled Agent Utility Gateway](https://justhandledlabs.com/agent-gateway/). The package exposes thirty-two preflights, maintained-data lookups, and evidence products. Twenty-two products cost $0.05 USDC; ten evidence-heavy or maintained-data products cost $0.25, including the live Chicago Contract Change Packet. Every paid call returns a versioned evidence receipt.
 
-The client fails closed before signing. It accepts only the pinned JustHandled gateway, Base mainnet, canonical Base USDC, the exact per-product price, and the published merchant receiver. Customer inputs are not persisted by the gateway.
+The client fails closed before signing. It accepts only the pinned JustHandled gateway, Base mainnet, canonical Base USDC, the exact per-product price, and the published merchant receiver. Customer inputs and complete customer results are not persisted by the gateway; maintained public-source snapshots are labeled in the receipt.
 
 ## Inspect without a wallet
 
@@ -16,6 +16,7 @@ npx --package @justhandledlabs/agent-client justhandled-agent preview qualified-
 npx --package @justhandledlabs/agent-client justhandled-agent preview channel-fit-evidence-matrix --file channel-fit-evidence-matrix.sample.json
 npx --package @justhandledlabs/agent-client justhandled-agent preview proof-to-channel-evidence-packet --file proof-to-channel-evidence-packet.sample.json
 npx --package @justhandledlabs/agent-client justhandled-agent preview channel-experiment-postmortem --file channel-experiment-postmortem.sample.json
+npx --package @justhandledlabs/agent-client justhandled-agent preview chicago-contract-change-packet --file chicago-contract-change-packet.sample.json
 ```
 
 Preview performs an unpaid request and validates the returned x402 terms. It does not sign or spend.
@@ -63,11 +64,11 @@ The package declares the official MCP Registry identity `io.github.justhandledla
 ## Security model
 
 - Price, chain, asset, receiver, and gateway origin are pinned in code.
-- The seven $0.25 products' 250,000-base-unit price is pinned separately from 50,000-base-unit checks.
+- The ten $0.25 products' 250,000-base-unit price is pinned separately from 50,000-base-unit checks.
 - Every execution starts with an unpaid 402 preview.
 - A mismatched term aborts before signing.
 - The package never prints the private key.
-- The gateway does not persist raw inputs or results.
+- The gateway does not persist customer inputs or complete customer results. Maintained-data products may retain normalized public-source snapshots and disclose that state in the receipt.
 - Treat all crypto transfers as irreversible and fund only a dedicated wallet.
 
 ## Development

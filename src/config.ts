@@ -10,6 +10,7 @@ export const AGENT_RUN_EVIDENCE_PACK_PRICE_USDC = "$0.25";
 export const QUARTER_DOLLAR_UTILITIES = new Set([
   AGENT_RUN_EVIDENCE_PACK,
   "chicago-demolition-permit-change-packet",
+  "chicago-contract-change-packet",
   "site-discovery-change-packet",
   "agent-distribution-readiness-pack",
   "community-rule-credibility-preflight",
