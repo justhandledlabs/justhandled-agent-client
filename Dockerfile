@@ -18,4 +18,3 @@ COPY --from=build /app/dist ./dist
 COPY LICENSE README.md server.json ./
 USER node
 ENTRYPOINT ["node", "dist/mcp.js"]
-
