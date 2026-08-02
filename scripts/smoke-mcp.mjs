@@ -30,7 +30,8 @@ child.stdout.on("data", (chunk) => {
       if (!Array.isArray(tools) || tools.length !== 33) {
         clearTimeout(timeout);
         child.kill();
-        throw new Error(`expected 33 MCP tools, received ${Array.isArray(tools) ? tools.length : "invalid response"}`);
+        const detail = message.error ? `; MCP error: ${JSON.stringify(message.error)}` : "";
+        throw new Error(`expected 33 MCP tools, received ${Array.isArray(tools) ? tools.length : "invalid response"}${detail}`);
       }
       console.log(`MCP smoke test passed: ${tools.length} tools discovered; no wallet key supplied and no payment attempted.`);
       clearTimeout(timeout);
