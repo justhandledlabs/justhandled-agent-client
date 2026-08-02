@@ -5,7 +5,7 @@ import { CallToolRequestSchema, ListToolsRequestSchema } from "@modelcontextprot
 import { getCatalog, runPaidUtility } from "./client.js";
 
 const server = new Server(
-  { name: "justhandled-agent-gateway", version: "0.9.0" },
+  { name: "justhandled-agent-gateway", version: "0.10.0" },
   { capabilities: { tools: {} } },
 );
 
@@ -15,7 +15,7 @@ server.setRequestHandler(ListToolsRequestSchema, async () => {
     tools: [
       {
         name: "justhandled_list_utilities",
-        description: "List JustHandled deterministic preflights, prices, and limitations.",
+        description: "List JustHandled preflights, maintained-data lookups, evidence products, prices, and limitations.",
         inputSchema: { type: "object", properties: {}, additionalProperties: false },
       },
       ...catalog.utilities.map((utility) => ({
